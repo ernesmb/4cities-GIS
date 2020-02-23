@@ -25,9 +25,10 @@ Product Solutions Manager at [CARTO](https://carto.com)
 * [Get a CARTO account](https://carto.com/signup)
 * [GitHub Gists](https://gist.github.com)
 * [bl.ocks.org](https://bl.ocks.org)
-* [Google CoLaboratory](https://colab.research.google.com/)
+* [Google Colab](https://colab.research.google.com/)
 
 ### Further reading
-* How to lie with maps
-* The power of maps
-* Rethinking the power of maps
+* How to lie with maps - Mark Monmonier
+* The power of maps - Denis Wood
+* Rethinking the power of maps - Denis Wood
+* An introduction to GIS - A free book by Victor Olaya - [link](https://volaya.github.io/gis-book/en/index.html)

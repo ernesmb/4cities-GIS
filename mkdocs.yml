@@ -4,6 +4,7 @@ repo_url: https://github.com/ernesmb/4cities-GIS
 site_author: Ernesto Martínez Becerra
 pages:
     - Hello: index.md
+    - Intro to GIS: 01_intro.md
 theme:
     name: null
     custom_dir: 'cinder/'
