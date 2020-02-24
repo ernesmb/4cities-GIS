@@ -5,6 +5,7 @@ site_author: Ernesto Martínez Becerra
 pages:
     - Hello: index.md
     - Intro to GIS: 01_intro.md
+    - CARTO office: 02_carto.md
 theme:
     name: null
     custom_dir: 'cinder/'
