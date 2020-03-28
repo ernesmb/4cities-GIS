@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ernesto Martínez Becerra">
+  <link rel="canonical" href="https://ernesmb.github.io/4cities-GIS/03_qgis/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>QGIS I - 4cities GIS course</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "QGIS I";
+    var mkdocs_page_input_path = "03_qgis.md";
+    var mkdocs_page_url = "/4cities-GIS/03_qgis/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4cities GIS course</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Hello</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_intro/">Intro to GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_carto/">CARTO office</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">QGIS I</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_qgis/">QGIS II</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_cloud/">Cloud GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_geodb/">Geospatial databases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_webmaps/">Webmapping</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4cities GIS course</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>QGIS I</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ernesmb/4cities-GIS/edit/master/docs/03_qgis.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="open-source-gis-qgis">Open Source GIS: QGIS</h1>
+<p>There are plenty of options if you need to work with a GIS, that don't imply acquiring a very expensive license or subscribing to an online service. Even more importantly, many of them come from a joint community effort (sometimes sponsored by companies or public institutions), and they work following the <a href="https://en.wikipedia.org/wiki/Open-source_software">Open Source</a> principles, which <em>"grants users the rights to study, change, and distribute the software to anyone and for any purpose"</em></p>
+<p>Among these options, <a href="https://qgis.org">QGIS</a> is hands down the most popular choice, as a standalone system or along with other products for different, specific purposes: <a href="https://postgresql.org/">PostgreSQL</a>/<a href="https://postgis.net/">PostGIS</a>, <a href="https://openlayers.org/">Openlayers</a>, <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="http://geoserver.org/">Geoserver</a>, and many, many more.</p>
+<p>Some of the projects mentioned above are part of <a href="https://www.osgeo.org/">OSGeo</a>, The Open Source Geospatial Foundation, that works towards driving global adoption of open geospatial technology. </p>
+<p>QGIS is also an excellent tool for learning GIS, from the very basics to any kind of professional project. There is plenty of high quality learning material available on the web, created and maintained up to date by the QGIS community or third parties. For our course, we will use the <strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/index.html">Official Training manual</a></strong>.</p>
+<p>So, first thing is installing QGIS on your computers. There are installers for Windows, Mac and Linux available at the official <a href="https://qgis.org/en/site/forusers/download.html">Download page</a>. You will see that there are two different versions available: </p>
+<ul>
+<li>3.12 is the latest version.</li>
+<li>3.10 is the Long Term Release (LTR) version. This version is more stable and has an extended support period. The materials we're following are based on this version. </li>
+</ul>
+<p>Once installed, these are the recommended exercises: </p>
+<ul>
+<li>Read this <strong><a href="https://docs.qgis.org/3.10/en/docs/gentle_gis_introduction/introducing_gis.html#more-about-gis">introduction to GIS</a></strong></li>
+<li>Dig a bit deeper into different geospatial data types: <strong><a href="https://docs.qgis.org/3.10/en/docs/gentle_gis_introduction/vector_data.html">Vector</a></strong> and <strong><a href="https://docs.qgis.org/3.10/en/docs/gentle_gis_introduction/raster_data.html">Raster</a></strong></li>
+<li>Learn about different <strong><a href="https://docs.qgis.org/3.10/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">Coordinate Reference Systems</a></strong>, and try to make a rectangle with an orange's peels ;)</li>
+<li>Create your first map, following <strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/introduction/preparation.html">this exercise</a></strong>. You can also try and load a different dataset from <a href="https://www.naturalearthdata.com/downloads/">Natural Earth Data</a>.</li>
+<li>Start working with vector data on <strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/basic_map/vector_data.html">this exercise</a></strong>.</li>
+<li>Learn the basics about <strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/basic_map/symbology.html">symbology</a></strong>.</li>
+<li>Start working with raster data <strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/rasters/data_manipulation.html">here</a></strong>.</li>
+</ul>
+<p>The sample data used in the exercises is available <strong><a href="https://github.com/qgis/QGIS-Training-Data/archive/v2.0.zip">here</a></strong>.</p>
+<p>As explained <a href="https://docs.qgis.org/3.10/en/docs/training_manual/foreword/intro.html#tiered-course-objectives">here</a>, exercises are tagged as <em>"Basic"</em>, <em>"Intermediate"</em> or <em>"Advanced"</em> based on its difficulty or level of expertise required. I'd recommend completing at least the "Basic" level exercises, but of course, feel free to try with a higher level if you feel comfortable with it.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../04_qgis/" class="btn btn-neutral float-right" title="QGIS II">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../02_carto/" class="btn btn-neutral" title="CARTO office"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ernesmb/4cities-GIS/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../02_carto/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../04_qgis/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
