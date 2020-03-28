@@ -12,6 +12,6 @@ pages:
     - Geospatial databases: 06_geodb.md
     - Webmapping: 07_webmaps.md
 
-theme:
-    name: null
-    custom_dir: 'cinder/'
+theme: readthedocs
+    # name: 
+    # custom_dir: 'cinder/'
