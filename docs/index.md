@@ -16,9 +16,20 @@ Geography / GIS
 
 Product Solutions Manager at [CARTO](https://carto.com)
 
-[ernesto@carto.com](mailto:ernesto@carto.com) | [ernesmb@gmail.com](mailto:ernesmb@gmail.com) | [@ernesmb](https://github.com/ernesmb)
+[ernesmb@gmail.com](mailto:ernesmb@gmail.com) | [@ernesmb](https://github.com/ernesmb)
 
 ---
+
+### Course methodology
+
+In these special, different times we'll have to carry on with the course in a remote and asynchronous way. 
+
+The learning material is organized in the tabs above, following the first two activities that we did (the introduction section and the visit to the CARTO office in Madrid). There will be a section matching each of the days when the course would have taken place.
+
+Each section contains links to pieces of open source learning material about a specific aspect or technology around GIS and geospatial technology. Also for each section I will propose optional exercises to help you navigate through the documentation. 
+
+Any question about the material, exercises, or anything else that you would normally ask in class, I will be happy to try and help [via email](mailto:ernesmb@gmail.com).
+
 
 ### Resources
 * [Source code](https://github.com/ernesmb/4cities-GIS)
