@@ -1,14 +1,14 @@
 # Open Source GIS: QGIS
 
-There are plenty of options if you need to work with a GIS, that don't imply acquiring a very expensive license or subscribing to an online service. Even more importantly, many of them come from a joint community effort (sometimes sponsored by companies or public institutions), and they work following the [Open Source](https://en.wikipedia.org/wiki/Open-source_software) principles, which _"grants users the rights to study, change, and distribute the software to anyone and for any purpose"_
+There are plenty of options if you need to work with a GIS, that don't imply acquiring a very expensive license or subscribing to an online service. Even more importantly, many of them come from a joint community effort (sometimes sponsored by companies or public institutions), and they work following the [Open Source](https://en.wikipedia.org/wiki/Open-source_software) principles, which _"grant users the rights to study, change, and distribute the software to anyone and for any purpose"_
 
 Among these options, [QGIS](https://qgis.org) is hands down the most popular choice, as a standalone system or along with other products for different, specific purposes: [PostgreSQL](https://postgresql.org/)/[PostGIS](https://postgis.net/), [Openlayers](https://openlayers.org/), [OpenStreetMap](https://www.openstreetmap.org/), [Geoserver](http://geoserver.org/), and many, many more.
 
 Some of the projects mentioned above are part of [OSGeo](https://www.osgeo.org/), The Open Source Geospatial Foundation, that works towards driving global adoption of open geospatial technology. 
 
-QGIS is also an excellent tool for learning GIS, from the very basics to any kind of professional project. There is plenty of high quality learning material available on the web, created and maintained up to date by the QGIS community or third parties. For our course, we will use the **[Official Training manual](https://docs.qgis.org/3.10/en/docs/training_manual/index.html)**.
+QGIS is also an excellent tool for learning GIS, from the very basics to almost any kind of professional project. There is plenty of high quality learning material available on the web, created and maintained up to date by the QGIS community or third parties. For our course, we will use the **[Official Training manual](https://docs.qgis.org/3.10/en/docs/training_manual/index.html)**.
 
-So, first thing is installing QGIS on your computers. There are installers for Windows, Mac and Linux available at the official [Download page](https://qgis.org/en/site/forusers/download.html). You will see that there are two different versions available: 
+So, first thing is installing QGIS on your computer. There are installers for Windows, Mac and Linux available at the official [Download page](https://qgis.org/en/site/forusers/download.html). You will see that there are two different versions available: 
 
 * 3.12 is the latest version.
 * 3.10 is the Long Term Release (LTR) version. This version is more stable and has an extended support period. The materials we're following are based on this version. 
