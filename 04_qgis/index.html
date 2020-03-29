@@ -66,6 +66,8 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">QGIS II</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -117,6 +119,25 @@
             <div class="section">
               
                 <h1 id="open-source-gis-qgis-ii">Open Source GIS: QGIS II</h1>
+<p>On this second session, we'll get a bit more familiar with some of the most usual GIS techniques: symbolization, map composition and some basic geospatial analysis. </p>
+<p>Cartography and symbolization are crucial for conveying a message through the visualization of geospatial data. The wrong color scheme, data classification or mapping technique can make your map unreadable, create a wrong idea on the reader or even manipulate ideas on purpose. </p>
+<p>Here is <strong><a href="https://blog.mapbox.com/7-best-practices-for-mapping-a-pandemic-9f203576a132">a great post from the Design and Support teams at Mapbox</a></strong>, talking about general best practices applied to mapping pandemic data. On the same topic, here is a very interesting thread about <strong><a href="https://twitter.com/ramiroaznar/status/1232368034498727936">bad practices</a></strong> when mapping Coronavirus data. </p>
+<p>Reading both references above, you'd notice that they agree upon the need of <strong>normalizing</strong> the data. Data normalization is a very important step when creating visualizations. Rather than showing absolute values, we should always calculate ratios, percentages, weighted averages, divide by population, by area, or any other operation that gives context to the data and help the map's reader to understand the visualization and the underlying data analysis.</p>
+<p>For example, without normalization, almost any measure we want to visualize that is relative to human behavior, will look like a population map: there is always more probability of occurence of any phenomenon where there are more people living.</p>
+<p>Here are <a href="https://xkcd.com/1138/">XKCD's views</a> on the subject: </p>
+<p><img alt="https://xkcd.com/1138/" src="https://imgs.xkcd.com/comics/heatmap.png" /></p>
+<p>Once you are more familiar with the first concepts, as loading and visualizing geospatial data, we can start getting into geospatial analysis. 
+The <strong><a href="https://en.wikipedia.org/wiki/Spatial_analysis">Wikipedia entry about Spatial Analysis</a></strong> is actually a very good introduction to the matter, that I recommend reading carefully. </p>
+<p>How can geospatial analysis help in Urban Planning / Development? It can help us determine how growing populations affect energy consumption, transportation, public services or housing resources. It also allows for compiling and cross-filtering data from many sources to see how crime, public health, education and housing/real estate outcomes vary by location. (from this <a href="https://www.omnisci.com/technical-glossary/geospatial-analytics">article</a>). 
+New data streams, as such provided by telco companies, mobile GPS data or real-time traffic information can help the urban analyst to draw a new picture of life in the cities. </p>
+<h3 id="exercises">Exercises</h3>
+<ul>
+<li><a href="https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/label_tool.html">Add some <strong>text labels</strong> to your map</a>. </li>
+<li><a href="https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/classification.html">Learn the basics about <strong>data classification and color ramps</strong></a>. You can also take a look at <strong><a href="https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">ColorBrewer</a></strong>, a very well known tool that helps choosing color palettes for maps; and to <a href="https://carto.com/carto-colors/">CARTOcolors</a>, more modern color palettes by <strong><a href="https://www.linkedin.com/in/mamataakella">Mamata Akella</a></strong>.</li>
+<li><a href="https://carto.com/blog/proportional-symbol-maps/">Learn more</a> about <strong>Proportional Symbols</strong>, best practices and Cartography principles.</li>
+<li><strong><a href="https://docs.qgis.org/3.10/en/docs/training_manual/map_composer/map_composer.html">Create a printable map layout</a></strong>.</li>
+<li>Analyze data and <strong>solve a spatial problem</strong> with GIS techniques following <a href="https://docs.qgis.org/3.10/en/docs/training_manual/vector_analysis/index.html">this section</a></li>
+</ul>
               
             </div>
           </div>
