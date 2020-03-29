@@ -36,6 +36,7 @@ Any question about the material, exercises, or anything else that you would norm
 * [Download QGIS](https://qgis.org/es/site/forusers/download.html)
 * [Get a CARTO account](https://carto.com/signup)
 * [Natural Earth Data](http://www.naturalearthdata.com/)
+* [ColorBrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
 * [GitHub Gists](https://gist.github.com)
 * [bl.ocks.org](https://bl.ocks.org)
 * [Google Colab](https://colab.research.google.com/)
