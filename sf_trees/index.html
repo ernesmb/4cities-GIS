@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ernesto Martínez Becerra">
+  <link rel="canonical" href="https://ernesmb.github.io/4cities-GIS/sf_trees/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>San Francisco tree map - 4cities GIS course</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "San Francisco tree map";
+    var mkdocs_page_input_path = "sf_trees.md";
+    var mkdocs_page_url = "/4cities-GIS/sf_trees/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4cities GIS course</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Hello</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_intro/">Intro to GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_carto/">CARTO office</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_qgis/">QGIS I</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_qgis/">QGIS II</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_cloud/">Cloud GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_geodb/">Geospatial databases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_webmaps/">Webmapping</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4cities GIS course</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>San Francisco tree map</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ernesmb/4cities-GIS/edit/master/docs/sf_trees.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="san-francisco-tree-map">San Francisco tree map</h1>
+<h2 id="1-import-and-create-map">1. Import and create map</h2>
+<h3 id="1-1-download-and-import-the-dataset">1. 1. Download and import the dataset</h3>
+<ul>
+<li>Go to <a href="https://team.carto.com/u/builder-demo/tables/sf_trees/public/map">https://team.carto.com/u/builder-demo/tables/sf_trees/public/map</a></li>
+<li>Download the dataset as a CSV file</li>
+<li>Go to your account and import it using the <em>NEW DATASET</em> options</li>
+</ul>
+<h3 id="1-2-dataset-view">1. 2. Dataset view</h3>
+<ul>
+<li>Take a look on the dataset</li>
+<li>Switch between the metadata and the SQL view, try any simple query like limiting the result.</li>
+<li>Take a look on the spatial distribution using the <em>PREVIEW</em> option</li>
+<li>Click on <em>CREATE MAP</em>.</li>
+</ul>
+<h2 id="2-layers-and-styles">2. Layers and styles</h2>
+<h3 id="2-1-ordering-of-the-layers-in-the-builder">2. 1. Ordering of the layers in the Builder</h3>
+<ul>
+<li>
+<p>Change the basemap to the <em>Dark Matter (labels below)</em> basemap and check the different basemaps options.</p>
+</li>
+<li>
+<p>Note how the layer we added gets the <em>A0</em> identifier. This is not important now but it will be later when adding analysis and widgets.</p>
+</li>
+</ul>
+<h3 id="2-2-layer-options">2. 2. Layer options</h3>
+<ul>
+<li><strong>DATA</strong>:<ul>
+<li>This interface gives a general view of the fields the layer, its name and its data type but also from there you can add them as widgets.</li>
+<li>Use the slider button to switch from <em>VALUES</em> to <em>SQL</em>. The SQL view allows more advanced users to manage data in a more precise way.</li>
+<li>Finally, use the button in the bottom left corner of the map to switch between <em>Data view</em> and <em>Map view</em>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li><strong>STYLE</strong>:<ul>
+<li>In the <em>Aggregation</em> menu<em>, select </em>NONE*.</li>
+<li>In the <em>FILL</em> options, select <em>BY VALUE</em> and then choose the <code>common_species</code> column to color the dots depending on its values.</li>
+<li>Change the size of the dots to <code>3</code> and change the stroke value of the points to <code>0</code>.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="style" src="../img/sf_trees/01-sftrees-01.png" /></p>
+<hr />
+<ul>
+<li><strong>POP-UP</strong>:<ul>
+<li>Select the <em>HOVER</em> tab and the <em>LIGHT</em> style for the hover infowindow.</li>
+<li>In the <em>Show Items</em> options, select the <code>common_species</code> field and change its name to <em>Common Species</em>.</li>
+<li>By doing this, a pop-up will appear when we hover over the points on the map.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="hover" src="../img/sf_trees/01-sftrees-02.png" /></p>
+<h2 id="3-widgets">3. Widgets</h2>
+<h3 id="3-1-category-widget">3. 1. Category Widget</h3>
+<ul>
+<li>Navigate back to <em>WIDGETS</em> pane and click on <em>ADD WIDGET</em>.</li>
+<li>In the options of the <em>CATEGORY</em> tab, click the <em>common_species</em> and <em>caretaker</em> checkboxes in order to have widgets that display the different categories of the <em>common_species</em> and <em>caretaker</em> fields. Click <em>CONTINUE</em> to add the widgets on the map.</li>
+</ul>
+<p><img alt="category" src="../img/sf_trees/01-sftrees-03.png" /></p>
+<h3 id="3-2-time-series-widget">3. 2. Time series widget</h3>
+<ul>
+<li>Back to the main menu, go to <em>WIDGETS</em> tab and click on <em>ADD WIDGET</em>.</li>
+<li>In the options of the <em>TIME-SERIES</em> tab, select the <em>plant_date</em> checkbox in order to display the dates were the trees were planted. Click <em>CONTINUE</em> to add the widgets on the map.</li>
+</ul>
+<p><img alt="time" src="../img/sf_trees/01-sftrees-04.png" /></p>
+<h3 id="3-3-change-order-and-name-of-widgets">3. 3. Change order and name of widgets</h3>
+<ul>
+<li>Back to the main menu, select the <em>WIDGETS</em> tab to see a list with the widgets that we have added.</li>
+<li>We can drag and drop the widgets in the widget pane to change their order.</li>
+</ul>
+<p><img alt="widgets" src="../img/sf_trees/01-sftrees-05.png" /></p>
+<ul>
+<li>We can change the name of our widgets by selecting the <em>RENAME</em> option of the widget menu or by double clicking on the widget name in the <em>WIDGETS</em> pane.</li>
+</ul>
+<p><img alt="rename" src="../img/sf_trees/01-sftrees-06.png" /></p>
+<ul>
+<li>Change the name of the <em>common_species</em> widget to <em>Common Species</em>, the name of the <em>caretaker</em> widget to <em>Caretaker</em> and the name of the <em>plant_date</em> widget to <em>Plant Date</em>.</li>
+</ul>
+<p><img alt="names_changed" src="../img/sf_trees/01-sftrees-07.png" /></p>
+<h2 id="4-share-map">4. Share map</h2>
+<ul>
+<li>At the bottom of the main menu, click on <em>SHARE</em>.</li>
+<li>Go to <em>PUBLISH</em> tab and click on <em>PUBLISH</em> button that is below the Map name in order to share our map.</li>
+</ul>
+<p><img alt="publish" src="../img/sf_trees/01-sftrees-08.png" /></p>
+<ul>
+<li>After clicking on <em>PUBLISH</em>, we can select the options that we want to share our map.</li>
+</ul>
+<p><img alt="share" src="../img/sf_trees/01-sftrees-09.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ernesmb/4cities-GIS/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
