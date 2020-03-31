@@ -19,10 +19,11 @@ Once you are more familiar with the first concepts, as loading and visualizing g
 The **[Wikipedia entry about Spatial Analysis](https://en.wikipedia.org/wiki/Spatial_analysis)** is actually a very good introduction to the matter, that I recommend reading carefully. 
 
 How can geospatial analysis help in Urban Planning / Development? It can help us determine how growing populations affect energy consumption, transportation, public services or housing resources. It also allows for compiling and cross-filtering data from many sources to see how crime, public health, education and housing/real estate outcomes vary by location. (from this [article](https://www.omnisci.com/technical-glossary/geospatial-analytics)). 
-New data streams, as such provided by telco companies, mobile GPS data or real-time traffic information can help the urban analyst to draw a new picture of life in the cities. 
+
+New data streams, as such provided by telco companies, mobile GPS data or real-time traffic information can help the urban analyst to draw a new picture of life in the cities.
 
 
-### Exercises
+## Exercises
 
 * [Add some **text labels** to your map](https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/label_tool.html). 
 * [Learn the basics about **data classification and color ramps**](https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/classification.html). You can also take a look at **[ColorBrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)**, a very well known tool that helps choosing color palettes for maps; and to [CARTOcolors](https://carto.com/carto-colors/), more modern color palettes by **[Mamata Akella](https://www.linkedin.com/in/mamataakella)**.

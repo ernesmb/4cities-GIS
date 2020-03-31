@@ -14,7 +14,7 @@ So, first thing is installing QGIS on your computer. There are installers for Wi
 * 3.10 is the Long Term Release (LTR) version. This version is more stable and has an extended support period. The materials we're following are based on this version. 
 
 
-### Exercises
+## Exercises
 
 Once installed, these are the recommended exercises: 
 
