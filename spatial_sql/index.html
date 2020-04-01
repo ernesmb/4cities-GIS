@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ernesto Martínez Becerra">
+  <link rel="canonical" href="https://ernesmb.github.io/4cities-GIS/spatial_sql/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Spatial SQL - 4cities GIS course</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Spatial SQL";
+    var mkdocs_page_input_path = "spatial_sql.md";
+    var mkdocs_page_url = "/4cities-GIS/spatial_sql/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4cities GIS course</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Hello</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_intro/">Intro to GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_carto/">CARTO office</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_qgis/">QGIS I</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_qgis/">QGIS II</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_cloud/">Cloud GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_geodb/">Geospatial databases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_webmaps/">Webmapping</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4cities GIS course</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Spatial SQL</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ernesmb/4cities-GIS/edit/master/docs/spatial_sql.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="spatial-sql">Spatial SQL</h1>
+<p>In this section you'll have the chance to test some of the most common <a href="http://postgis.net/docs/reference.html">PostGIS</a> SQL procedures.</p>
+<hr />
+<h2 id="contents">Contents</h2>
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+<ul>
+<li><a href="#spatial-sql">Spatial SQL</a><ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#set-up">Set up</a></li>
+<li><a href="#postgis-concepts-geometry-vs-geography">PostGIS concepts: <code>geometry</code> vs. <code>geography</code></a></li>
+<li><a href="#thegeom-vs-thegeomwebmercator"><code>the_geom</code> vs. <code>the_geom_webmercator</code></a></li>
+<li><a href="#sql-that-applies-to-all-geometries">SQL that applies to all geometries</a><ul>
+<li><a href="#transforming-geometries-into-a-different-projection">Transforming geometries into a different projection</a><ul>
+<li><a href="#world-robinson">World Robinson</a></li>
+</ul>
+</li>
+<li><a href="#translating-geometries">Translating Geometries</a></li>
+<li><a href="#buffer-stbuffer">Buffer (ST_Buffer)</a><ul>
+<li><a href="#simple-buffer">Simple Buffer</a></li>
+<li><a href="#dissolve-buffers">Dissolve Buffers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sql-for-points">SQL for Points</a><ul>
+<li><a href="#know-wether-a-geometry-is-within-the-given-range-from-another-geometry">Know wether a geometry is <strong>within</strong> the given range from another geometry:</a></li>
+<li><a href="#making-linesa-namelinesa">Making lines<a name="lines"></a></a><ul>
+<li><a href="#simple-lines">Simple lines</a></li>
+<li><a href="#multiple-lines">Multiple lines</a></li>
+<li><a href="#sequential-lines">Sequential lines</a></li>
+<li><a href="#great-circles-curved-lines">Great Circles (curved lines)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sql-for-polygons">SQL for Polygons</a><ul>
+<li><a href="#get-the-number-of-points-inside-a-polygon">Get the number of points inside a polygon</a></li>
+<li><a href="#get-the-difference-between-two-geometries">Get the <strong>difference</strong> between two geometries:</a></li>
+<li><a href="#negative-buffer">Negative buffer</a></li>
+<li><a href="#spatial-joins">Spatial Joins</a></li>
+</ul>
+</li>
+<li><a href="#sql-for-carto">SQL for CARTO</a><ul>
+<li><a href="#cdblatlng">CDB_LatLng()</a></li>
+<li><a href="#grids">Grids</a><ul>
+<li><a href="#hexagon-grids">Hexagon Grids</a></li>
+<li><a href="#rectangular-grids">Rectangular Grids</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<hr />
+<h2 id="set-up">Set up</h2>
+<p>For this exercise, we will use <a href="https://carto.com">CARTO</a> as a convenient way to interact with PostGIS, which will require no installation or configuration by you. You won't even need an account; we're using public demo datasets. However, you could always download the datasets and import them to your own CARTO account before starting.</p>
+<p>These are the datasets that you will need to complete the exercises. You can download them from the links below and import them to your CARTO account. </p>
+<ul>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+ne_10m_populated_places_simple&amp;format=gpkg&amp;filename=ne_10m_populated_places_simple">ne_10m_populated_places_simple</a>: Populated places in the world.</li>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+ne_110m_admin_0_countries&amp;format=gpkg&amp;filename=ne_110m_admin_0_countries">ne_110m_admin_0_countries</a>: Countries</li>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+railroad_data&amp;format=gpkg&amp;filename=railroad_data">railroad_data</a>: Raiload accidents in the US</li>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+barcelona_building_footprints&amp;format=gpkg&amp;filename=barcelona_building_footprints">barcelona_building_footprints</a>: City blocks in Barcelona</li>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+lineas_madrid&amp;format=gpkg&amp;filename=lineas_madrid">lineas_madrid</a>: Madrid's Metro lines</li>
+<li><a href="http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+listings_madrid&amp;format=gpkg&amp;filename=listings_madrid">listings_madrid</a>: AirBnB data for Madrid</li>
+</ul>
+<p>As a client for this workshop, we will use a web application that can interact with CARTO: <a href="https://franchise.carto.io/">Franchise</a>.</p>
+<p>From the side menu, navigate to 'CARTO', then use the following parameters to connect:</p>
+<ul>
+<li>Host name: <code>carto.com</code></li>
+<li>User name: <code>carto-workshops</code> (or your own username)</li>
+<li>API key: you can leave this empty</li>
+</ul>
+<p><img alt="" src="../img/db/franchise-setup.png" /></p>
+<p>Once connected, you can run <code>SELECT</code> queries against any public dataset from that account.</p>
+<p>Some tables you have available to you from this account are:</p>
+<ul>
+<li><code>ne_10m_populated_places_simple</code>: Natural Earth populated places</li>
+<li><code>ne_110m_admin_0_countries</code>: Natural Earth country boundaries</li>
+<li><code>railroad_data</code>: Railroad accidents in the USA</li>
+<li><code>barcelona_building_footprints</code>: Barcelona blocks</li>
+<li><code>lineas_madrid</code>: Madrid metro lines</li>
+<li><code>listings_madrid</code>: Madrid Airbnb listings</li>
+</ul>
+<p>Try entering a simple query like the one below. To run the query, type <code>Control+Enter</code> on PCs, <code>Command+Enter</code>/<code>Cmd+Return</code> on macs, or press the green <code>play</code> button in the bottom right corner of the SQL panel. </p>
+<pre><code class="sql">select *
+  from listings_madrid
+where bathrooms &gt;= 3
+</code></pre>
+
+<p>After applying a query, you should see the results in the map. If it becomes unresponsive, normally just refreshing the page will make it work again.</p>
+<hr />
+<h2 id="postgis-concepts-geometry-vs-geography">PostGIS concepts: <code>geometry</code> vs. <code>geography</code></h2>
+<ul>
+<li>
+<p><strong><code>Geometry</code></strong> uses a cartesian plane to measure and store features (CRS units):</p>
+<blockquote>
+<p>The basis for the PostGIS <code>geometry</code> type is a plane. The shortest path between two points on the plane is a straight line. That means calculations on geometries (areas, distances, lengths, intersections, etc) can be calculated using cartesian mathematics and straight line vectors.</p>
+</blockquote>
+</li>
+<li>
+<p><strong><code>Geography</code></strong> uses a sphere to measure and store features (Meters):</p>
+<blockquote>
+<p>The basis for the PostGIS <code>geography</code> type is a sphere. The shortest path between two points on the sphere is a great circle arc. That means that calculations on geographies (areas, distances, lengths, intersections, etc) must be calculated on the sphere, using more complicated mathematics. For more accurate measurements, the calculations must take the actual spheroidal shape of the world into account, and the mathematics becomes very complicated indeed.</p>
+</blockquote>
+</li>
+</ul>
+<p>More about the <code>geography</code> type can be found <a href="http://workshops.boundlessgeo.com/postgis-intro/geography.html">here</a> and <a href="http://postgis.net/docs/manual-1.5/ch04.html#PostGIS_Geography">here</a>.</p>
+<p><img alt="cart vs sph" src="../img/db/cartesian_spherical.jpg" /></p>
+<p><img alt="LA-CDG" src="../img/db/lax_cdg.jpg" /></p>
+<p><em>Source: <a href="http://workshops.boundlessgeo.com/postgis-intro">Boundless Postgis intro</a></em></p>
+<hr />
+<h2 id="the_geom-vs-the_geom_webmercator"><code>the_geom</code> vs. <code>the_geom_webmercator</code></h2>
+<ul>
+<li><strong><code>the_geom</code></strong> EPSG:4326. Unprojected coordinates in <strong>decimal degrees</strong> (Lon/Lat). WGS84 Spheroid.</li>
+<li><strong><code>the_geom_webmercator</code></strong> EPSG:3857. UTM projected coordinates in <strong>meters</strong>. This is a conventional Coordinate Reference System, widely accepted as a 'de facto' standard in webmapping.</li>
+</ul>
+<p>In CARTO, <strong>the_geom_webmercator column is the one we see represented in the map</strong>. Know more about projections:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Map_projection">Map Projections in Wikipedia</a>.</li>
+<li>In <a href="http://blog.cartodb.com/free-your-maps-web-mercator/">this CARTO blog post</a>.</li>
+</ul>
+<hr />
+<h2 id="sql-that-applies-to-all-geometries">SQL that applies to all geometries</h2>
+<p>The following queries will work on all geometries: point, line, and polygon.</p>
+<h3 id="transforming-geometries-into-a-different-projection">Transforming geometries into a different projection</h3>
+<h4 id="world-robinson">World Robinson</h4>
+<pre><code class="sql">SELECT
+  cartodb_id,
+  ST_Transform(the_geom, 54030) AS the_geom_webmercator
+FROM
+  ne_50m_land
+</code></pre>
+
+<p><img alt="transform projections" src="../img/db/spatial-sql-01.png" /></p>
+<p><em>About <a href="http://cartodb.github.io/training/intermediate/cartocss.html#projections">working with different projections in CARTO</a> and <a href="http://postgis.net/docs/ST_Transform.html"><code>ST_Transform</code></a>.</em></p>
+<p><em>This <a href="https://ramiroaznar.github.io/labs-carto-proj/">application</a> displays several popular map projections and gives some information on each.</em></p>
+<hr />
+<h3 id="translating-geometries">Translating Geometries</h3>
+<pre><code class="sql">SELECT
+  cartodb_id,
+  ST_Transform(ST_Translate(the_geom,5.0,7.4), 3857) as the_geom_webmercator
+FROM
+  ne_50m_land
+WHERE
+ ST_Intersects(
+   the_geom,
+   ST_MakeEnvelope(-18.748169,27.571591,-13.342896,29.463514,4326)
+ )
+</code></pre>
+
+<p><img alt="translate geoms" src="../img/db/spatial-sql-02.png" /></p>
+<hr />
+<h3 id="buffer-st_buffer">Buffer (ST_Buffer)</h3>
+<h4 id="simple-buffer">Simple Buffer</h4>
+<p>ST_Buffer uses the input geometry's unit of measure, which in the case of our <code>the_geom</code> is decimal degrees. In order to use meters as our buffer unit, we must cast our geometry to a geography, then back to a geometry once we have our buffer. Alternatively, if you just want to visualize you can simply use <code>the_geom_webmercator</code>, as it's unit of measure is already meters.</p>
+<p><em>About <a href="http://postgis.net/docs/ST_Buffer.html"><code>ST_Buffer</code></a>.</em></p>
+<pre><code class="sql">SELECT
+  ST_Transform(
+    ST_Buffer(
+      the_geom::geography,
+      10000*5
+    )::geometry,
+  3857) As the_geom_webmercator,
+  1 as cartodb_id
+FROM
+  ne_10m_populated_places_simple
+WHERE
+  adm0name ILIKE 'spain'
+</code></pre>
+
+<p><img alt="buffer" src="../img/db/spatial-sql-03.png" /></p>
+<hr />
+<h4 id="dissolve-buffers">Dissolve Buffers</h4>
+<pre><code class="sql">SELECT
+  row_number() over() as cartodb_id,
+  ST_UnaryUnion(grp) as the_geom,
+  st_transform(
+    ST_UnaryUnion(grp)
+    ,3857
+  ) as the_geom_webmercator,
+  ST_NumGeometries(grp) as num_geoms
+FROM
+  (SELECT
+    UNNEST(
+      ST_ClusterWithin(
+        (
+          ST_BUFFER(
+            (the_geom::geography)
+            ,10000*5
+          )::geometry
+        )
+      ,0.0001)
+    ) AS grp
+  FROM ne_10m_populated_places_simple
+  WHERE adm0name ILIKE 'spain') sq
+</code></pre>
+
+<p><img alt="dissolve buffer" src="../img/db/spatial-sql-04.png" /></p>
+<hr />
+<h2 id="sql-for-points">SQL for Points</h2>
+<h3 id="know-wether-a-geometry-is-within-the-given-range-from-another-geometry">Know wether a geometry is <strong>within</strong> the given range from another geometry:</h3>
+<pre><code class="sql">SELECT a.*
+  FROM ne_10m_populated_places_simple a,
+       ne_10m_populated_places_simple b
+ WHERE a.cartodb_id != b.cartodb_id
+   AND ST_DWithin(
+         a.the_geom_webmercator,
+         b.the_geom_webmercator,
+         150000)
+   AND a.adm0name = 'Spain'
+   AND b.adm0name = 'Spain'
+</code></pre>
+
+<p><img alt="dwithin" src="../img/db/spatial-sql-10.png" /></p>
+<p>In this case, we are using <code>the_geom_webmercator</code> to avoid casting to <code>geography</code> type. Calculations made with <code>geometry</code> type takes the CRS units.</p>
+<p>Keep in mind that CRS <strong>units in webmercator are not meters</strong>, and they depend directly on the latitude.</p>
+<p><em>About <a href="http://postgis.net/docs/ST_DWithin.html"><code>ST_DWithin</code></a>.</em></p>
+<hr />
+<h3 id="making-lines">Making lines<a name="lines"></a></h3>
+<h4 id="simple-lines">Simple lines</h4>
+<pre><code class="sql">WITH
+  b as (SELECT * FROM ne_10m_populated_places_simple WHERE name ilike 'barcelona' and adm0name ilike 'spain'),
+  m as (SELECT * FROM ne_10m_populated_places_simple WHERE name ilike 'madrid')
+
+SELECT
+  ST_Transform(ST_MakeLine(b.the_geom, m.the_geom),3857) as the_geom_webmercator,
+  b.cartodb_id
+FROM
+  b, m
+</code></pre>
+
+<p><img alt="simple-line" src="../img/db/spatial-sql-12.png" /></p>
+<hr />
+<h4 id="multiple-lines">Multiple lines</h4>
+<pre><code class="sql">WITH
+  spain as (SELECT * FROM ne_10m_populated_places_simple WHERE adm0name ILIKE 'spain'),
+  madrid as (SELECT * FROM spain WHERE name ILIKE 'Madrid')
+
+SELECT
+  ST_Transform(ST_MakeLine(m.the_geom, s.the_geom),3857) as the_geom_webmercator,
+  s.cartodb_id
+FROM
+  spain s, madrid m
+WHERE
+  s.cartodb_id &lt;&gt; m.cartodb_id
+</code></pre>
+
+<p><img alt="multi-lines" src="../img/db/spatial-sql-13.png" /></p>
+<hr />
+<h4 id="sequential-lines">Sequential lines</h4>
+<pre><code class="sql">SELECT
+  ST_MakeLine(the_geom_webmercator ORDER BY ST_X(the_geom), ST_Y(the_geom) ASC) as the_geom_webmercator,
+  min(cartodb_id) as cartodb_id
+FROM
+  ne_10m_populated_places_simple
+WHERE
+  adm0name ILIKE 'spain'
+</code></pre>
+
+<h2 id="_1"><img alt="seq-lines" src="../img/db/spatial-sql-14.png" /></h2>
+<h4 id="great-circles-curved-lines">Great Circles (curved lines)</h4>
+<pre><code class="sql"> SELECT ST_Transform(
+          ST_Segmentize(
+            ST_Makeline(
+              a.the_geom,
+              b.the_geom
+            )::geography,
+            100000
+          )::geometry,
+        3857
+        ) as the_geom_webmercator
+   FROM (
+          SELECT *
+            FROM ne_10m_populated_places_simple
+           WHERE name ILIKE 'madrid'
+        ) as a,
+        (
+          SELECT *
+            FROM ne_10m_populated_places_simple
+           WHERE name ILIKE 'new york'
+        ) as b
+</code></pre>
+
+<p><img alt="seq-lines" src="../img/db/spatial-sql-15.png" /></p>
+<p><em>About <a href="http://blog.cartodb.com/jets-and-datelines/">Great Circles</a>.</em></p>
+<hr />
+<h2 id="sql-for-polygons">SQL for Polygons</h2>
+<h3 id="get-the-number-of-points-inside-a-polygon">Get the number of points inside a polygon</h3>
+<p>Using <code>GROUP BY</code>:</p>
+<pre><code class="sql">  SELECT e.cartodb_id,
+         e.admin,
+         e.the_geom_webmercator,
+         count(*) AS pp_count,
+         sum(p.pop_max) as sum_pop
+    FROM ne_adm0_europe e
+    JOIN ne_10m_populated_places_simple p
+      ON ST_Intersects(p.the_geom, e.the_geom)
+GROUP BY e.cartodb_id
+</code></pre>
+
+<p><img alt="points in poly group" src="../img/db/spatial-sql-08.png" />
+Using <code>LATERAL</code>:</p>
+<pre><code class="sql">SELECT a.cartodb_id,
+       a.admin AS name,
+       a.the_geom_webmercator,
+       counts.number_cities AS pp_count,
+       counts.sum_pop
+  FROM ne_adm0_europe a
+ CROSS JOIN LATERAL
+  ( SELECT count(*) as number_cities,
+           sum(pop_max) as sum_pop
+      FROM ne_10m_populated_places_simple b
+     WHERE ST_Intersects(a.the_geom, b.the_geom)
+  ) AS counts
+</code></pre>
+
+<p><img alt="points in poly lats" src="../img/db/spatial-sql-09.png" /></p>
+<p><em>About <a href="http://postgis.net/docs/ST_Intersects.html"><code>ST_Intersects</code></a> and <a href="http://blog.heapanalytics.com/postgresqls-powerful-new-join-type-lateral">Lateral JOIN</a></em></p>
+<p><strong>Note:</strong> You know about the <code>EXPLAIN ANALYZE</code> function? use it to take a look on how both queries are pretty similar in terms of performance.</p>
+<hr />
+<h3 id="get-the-difference-between-two-geometries">Get the <strong>difference</strong> between two geometries:</h3>
+<pre><code class="sql">SELECT a.cartodb_id,
+       ST_Difference(
+         a.the_geom_webmercator,
+         b.the_geom_webmercator
+       ) AS the_geom_webmercator
+  FROM ne_50m_land a,
+       ne_adm0_europe b
+ WHERE b.adm0_a3 like 'ESP'
+</code></pre>
+
+<p><img alt="difference" src="../img/db/spatial-sql-11.png" /></p>
+<p><em>About <a href="http://postgis.net/docs/ST_Difference.html"><code>ST_Difference</code></a>.</em></p>
+<hr />
+<h3 id="negative-buffer">Negative buffer</h3>
+<pre><code class="sql">SELECT
+  cartodb_id,
+  ST_Transform(
+    ST_Buffer(
+      the_geom::geography,
+      -30000
+    )::geometry,
+  3857) As the_geom_webmercator
+FROM
+  world_borders
+WHERE
+  name ilike 'spain'
+</code></pre>
+
+<p><img alt="negative-buffers" src="../img/db/spatial-sql-16.png" /></p>
+<hr />
+<h3 id="spatial-joins">Spatial Joins</h3>
+<pre><code class="sql">with metro_lines as (
+  SELECT
+    row_number() over() as cartodb_id,
+    ST_Buffer(
+        the_geom::geography,
+        100
+      )::geometry as the_geom,
+    ST_Transform(
+      ST_Buffer(
+        the_geom::geography,
+        100
+      )::geometry,
+    3857) As the_geom_webmercator
+  FROM lineas_madrid
+  )
+
+select x.*,
+y.cartodb_id as joined
+from listings_madrid x
+left join metro_lines y
+on st_intersects(x.the_geom, y.the_geom)
+</code></pre>
+
+<p><img alt="spatial join" src="../img/db/spatial-sql-17.png" /></p>
+<p>In the above example, you can see where the points joined on the buffer of the metro lines, and where they didn't based on if the cartodb_id for the lines existed in the points dataset.</p>
+<hr />
+<h2 id="sql-for-carto">SQL for CARTO</h2>
+<h3 id="cdb_latlng">CDB_LatLng()</h3>
+<p><code>cdb_latlng()</code> is a shortcut to the function <code>ST_SetSRID(ST_Point(),srid)</code>, with the default srid set as <code>4326</code>, the srid of <code>the_geom</code>. One notable difference is that <code>ST_Point()</code> takes coordinate pairs in the order of <code>(longitude, latitude)</code>, whereas <code>cdb_latlng()</code> takes coordinate pairs in the order of <code>(latitude, longitude)</code>.</p>
+<pre><code class="sql">SELECT
+  1 as cartodb_id,
+  CDB_LatLng(0,0) as the_geom,
+  ST_Transform(CDB_LatLng(0, 0), 3857) as the_geom_webmercator  
+  /* ST_SetSRID(ST_MakePoint(0, 0), 4326) */
+</code></pre>
+
+<p><img alt="cdb_latlng" src="../img/db/spatial-sql-05.png" /></p>
+<hr />
+<h3 id="grids">Grids</h3>
+<h4 id="hexagon-grids">Hexagon Grids</h4>
+<pre><code class="sql">WITH grid as (
+  SELECT
+    row_number() over () as cartodb_id,
+    CDB_HexagonGrid(
+      ST_Buffer(the_geom_webmercator, 1000000),
+      10000
+    ) AS the_geom_webmercator
+  FROM
+    world_borders
+  WHERE
+    name ILIKE 'spain')
+
+SELECT
+  grid.the_geom_webmercator,
+  grid.cartodb_id
+FROM
+  grid, world_borders a
+WHERE
+  ST_Intersects(grid.the_geom_webmercator, a.the_geom_webmercator)
+AND
+  name ILIKE 'spain'
+</code></pre>
+
+<p><img alt="hex grids" src="../img/db/spatial-sql-06.png" /></p>
+<p><em>About <a href="http://docs.cartodb.com/tips-and-tricks/cartodb-functions/#a-hexagon-grid">CDB_HexagonGrid</a></em></p>
+<hr />
+<h4 id="rectangular-grids">Rectangular Grids</h4>
+<pre><code class="sql">WITH grid as (
+  SELECT
+    row_number() over () as cartodb_id,
+    CDB_RectangleGrid(
+      ST_Buffer(the_geom_webmercator, 1000000),
+      25000,
+      25000
+    ) AS the_geom_webmercator
+  FROM
+    world_borders
+  WHERE
+    name ILIKE 'spain')
+
+SELECT
+  grid.the_geom_webmercator,
+  grid.cartodb_id
+FROM
+  grid, world_borders a
+WHERE
+  ST_Intersects(grid.the_geom_webmercator, a.the_geom_webmercator)
+AND
+  name ILIKE 'spain'
+</code></pre>
+
+<p><img alt="rect grids" src="../img/db/spatial-sql-07.png" />
+<em>About <a href="http://docs.cartodb.com/tips-and-tricks/cartodb-functions/#a-rectangle-grid">CDB_RectangleGrid</a></em></p>
+<p>You can read more about CARTO custom spatial queries <a href="https://carto.com/docs/tips-and-tricks/carto-functions/">here</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ernesmb/4cities-GIS/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

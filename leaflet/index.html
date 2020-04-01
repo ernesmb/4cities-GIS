@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Ernesto Martínez Becerra">
+  <link rel="canonical" href="https://ernesmb.github.io/4cities-GIS/leaflet/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Leaflet.js - 4cities GIS course</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Leaflet.js";
+    var mkdocs_page_input_path = "leaflet.md";
+    var mkdocs_page_url = "/4cities-GIS/leaflet/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 4cities GIS course</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Hello</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_intro/">Intro to GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_carto/">CARTO office</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_qgis/">QGIS I</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_qgis/">QGIS II</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_cloud/">Cloud GIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_geodb/">Geospatial databases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_webmaps/">Webmapping</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">4cities GIS course</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Leaflet.js</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ernesmb/4cities-GIS/edit/master/docs/leaflet.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="leafletjs">Leaflet.js</h1>
+<!-- MarkdownTOC -->
+
+<ul>
+<li>Getting started</li>
+<li>Adding a GeoJSON layer</li>
+<li>Styling a GeoJSON layer</li>
+<li>Adding a Pop-up</li>
+<li>Filtering the layer</li>
+<li>Events</li>
+<li>Play with a live example</li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<h2 id="getting-started">Getting started</h2>
+<p>Creating a basic map with Leaflet is actually pretty easy, this Javascript snippet will create a map with a single marker and a popup:</p>
+<pre><code class="javascript">var map = L.map('map').setView([51.505, -0.09], 13);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
+}).addTo(map);
+
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.&lt;br&gt; Easily customizable.')
+    .openPopup();
+</code></pre>
+
+<p>Let's see what each part does:</p>
+<h3 id="map-object"><a href="http://leafletjs.com/reference-1.0.3.html#map">Map object</a></h3>
+<pre><code class="javascript">var map = L.map('map').setView([51.505, -0.09], 13);
+</code></pre>
+
+<p>There are three different <code>map</code> on that single line! let's elaborate a bit: </p>
+<ul>
+<li><code>var map</code>: This is the variable that will hold the map object</li>
+<li><code>L.map</code>: This makes reference to the <a href="http://leafletjs.com/reference-1.0.3.html#map">Leaflet map class</a></li>
+<li><code>'map'</code>: This is the HTML DOM object where we'll render the map</li>
+</ul>
+<p>This line uses Leaflet's Map class for creating a new <code>map</code> object on the DOM element identified by <code>'map'</code>. </p>
+<p>The <code>setView</code> method is necessary in order to center the map to an specific location and zoom level. </p>
+<h3 id="tiled-layer"><a href="http://leafletjs.com/reference-1.0.3.html#tilelayer">Tiled layer</a></h3>
+<p>Most tiled web maps follow certain Google Maps conventions:</p>
+<ul>
+<li>Tiles are 256x256 pixels</li>
+<li>At the outer most zoom level, 0, the entire world can be rendered in a single map tile.</li>
+<li>Each zoom level doubles in both dimensions, so a single tile is replaced by 4 tiles when zooming in. This means that about 22 zoom levels are sufficient for most practical purposes.</li>
+<li>The Web Mercator projection is used, with latitude limits of around 85 degrees.</li>
+<li>The <em>de facto</em> OpenStreetMap standard, known as Slippy Map Tilenames or XYZ follows these and adds more:</li>
+<li>An X and Y numbering scheme</li>
+<li>PNG images for tiles</li>
+<li>Images are served through a REST API, with a URL like <code>http(s)://.../Z/X/Y.png</code>, where Z is the zoom level, and X and Y identify the tile.</li>
+</ul>
+<p>(from <a href="https://en.wikipedia.org/wiki/Tiled_web_map">Wikipedia: Tiled web map</a>)</p>
+<blockquote>
+<p>Check <a href="https://www.mapbox.com/help/how-web-maps-work/">this link</a> to know more about tiles and how they work</p>
+</blockquote>
+<p>This is the code that let us add a tiled layer to a leaflet map: </p>
+<pre><code class="javascript">L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
+}).addTo(map);
+</code></pre>
+
+<ul>
+<li>Remember to always add the attribution</li>
+<li><code>.addTo()</code> is a method of the <code>tileLayer</code> class (and many others) that adds the declared layer to the map object. It expects the variable with the map object as a parameter. </li>
+</ul>
+<blockquote>
+<p>Check <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">this tiled layers catalog</a> to find more basemap options.</p>
+</blockquote>
+<h3 id="marker"><a href="http://leafletjs.com/reference-1.0.3.html#marker">Marker</a></h3>
+<p>Adding a single marker to a Leaflet map is as easy as: </p>
+<pre><code class="javascript">L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.&lt;br&gt; Easily customizable.')
+    .openPopup();
+</code></pre>
+
+<p>This adds a marker as a new layer to the map. It expects at least an array with pair of <strong>LatLon</strong> coordinates. </p>
+<p><code>.bindPopup()</code> adds a popup with custom HTML content inside. <code>.openPopup()</code> opens the popup programmatically. </p>
+<h5 id="check-a-live-version-of-this-basic-example-here-feel-free-to-play-with-it">Check a live version of this basic example <a href="http://plnkr.co/edit/cDszbYcgUZexjCPzoSmT?p=preview">here</a>. Feel free to play with it!</h5>
+<h2 id="adding-a-geojson-layer">Adding a <a href="http://leafletjs.com/reference-1.0.3.html#geojson">GeoJSON</a> layer</h2>
+<p>Another possibility for adding data to a Leaflet map would be loading a set of geometries (and their properties) using a geoJSON file. 
+We're going to use this <a href="../src/populated_places.js">Spanish cities dataset</a>. </p>
+<p>First thing we need to do is storing the geoJSON features in a variable (on <code>populated_places.js</code> file) and load the file on the HTML's <code>&lt;head&gt;</code> section:</p>
+<pre><code class="html">&lt;script src=&quot;populated_places.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>After that, adding the features as a vector layer in Leaflet is quite easy: </p>
+<pre><code class="javascript">L.geoJSON(populatedPlaces, {}).addTo(map);  
+</code></pre>
+
+<p>Note that we're just referencing the variable name, and not passing any other option to <code>geoJSON()</code> method. We'll come back to that later. </p>
+<p>This approach has a very important drawback. Vector layers in Leaflet use a lot of memory on the browser, which leads to slow map performance depending on the computer and the amount of features to be loaded. </p>
+<p>This really wouldn't work for a map with thousands of features, but is a nice and easy approach for a map in the range of a few hundreds features. </p>
+<h2 id="styling-a-geojson-layer">Styling a GeoJSON layer</h2>
+<p>Let's dig a bit more on how to work with geoJSON layers, with some cartographic enhancements. </p>
+<p>Leaflet uses functions that return certain values or objects in order to set layer options. For example:</p>
+<ul>
+<li>
+<p><code>pointToLayer</code> option defines the way in which each point geometry is going to be represented on the map. By default it returns a <code>L.marker</code> object, but we can set different options for different symbolizers, such as: </p>
+<p><code>javascript
+pointToLayer: function(feature,latlng){
+    return L.circleMarker(latlng)
+}</code></p>
+<p>Note the function expects two arguments: </p>
+<ul>
+<li><code>feature</code> makes reference to each point feature on the layer.</li>
+<li><code>latlng</code> is a <code>L.latLng</code> object that contains the geographic position of the feature. </li>
+</ul>
+<p>Those arguments could be used inside the function to play with them as you want. They could be called however you like, but bear in mind the first one will always make reference to the feature, and the second to the <code>L.latLng</code> object. </p>
+</li>
+<li>
+<p><code>style</code> option is used to set the styling rules for the layer. It only expects a <code>feature</code> argument</p>
+<p><code>javascript
+style: function(feature){
+    return {
+        "fillColor":"#F00",
+        "fillOpacity":0.6,
+        "stroke":false,
+        "radius":feature.properties.pop_max/100000
+    }
+}</code></p>
+<p>In this case, the function returns an object with a key/value configuration. It applies the same style to every feature, but we could also add some conditional structure to create a choropleth map. </p>
+<p>Note that we can use the <code>feature</code> variable inside the function to make reference to the feature's properties and use them to set style rules. </p>
+</li>
+<li>
+<p>There are other options that add functionality to the layer, we'll see some of them later but check <a href="http://leafletjs.com/reference-1.0.3.html#geojson">this link</a> for the complete reference.  </p>
+</li>
+</ul>
+<h2 id="adding-a-pop-up">Adding a Pop-up</h2>
+<p>We could add a simple, static Popup that shows the same content for every feature in the map, using the <code>bindPopup()</code> method we saw before. </p>
+<p>However, in order to create dynamic Popups that show information stored as feature properties, we need a different approach. </p>
+<p>We'll do so by passing another option to <code>L.geoJSON</code> layer declaration: </p>
+<pre><code class="javascript">onEachFeature: function(feature,layer){
+    layer.bindPopup(
+        '&lt;h2&gt;'+feature.properties.name+'&lt;/h2&gt;'+
+        '&lt;b&gt;Population:&lt;/b&gt; '+feature.properties.pop_max
+        )
+}
+</code></pre>
+
+<p>This will render the HTML code passed as argument to the function, but is also able to get values from the feature properties. </p>
+<h2 id="filtering-the-layer">Filtering the layer</h2>
+<p>We could also apply a filter based on each feature properties, the <code>filter</code> options iterate over the geojson layer and applies the function we have defined to return <code>true</code> or <code>false</code> depending on whether a feature should be rendered or not. </p>
+<pre><code class="javascript">filter: function(feature){
+    if (feature.properties.pop_max &lt; 100000){
+        return false
+    }
+    else {
+        return true
+    }
+}
+</code></pre>
+
+<p>The filter above will only show cities with more than 100K inhabitants. </p>
+<h2 id="events"><a href="http://leafletjs.com/reference-1.0.3.html#map-event">Events</a></h2>
+<p>Registering an event allows to perform certain actions based on changes on the map state, user interaction, etc</p>
+<p>We can easily register an event and set the subsequent actions like this: </p>
+<pre><code class="javascript">map.on('moveend', function(){
+    coords.innerHTML='&lt;b&gt; CENTER: &lt;/b&gt;'+map.getCenter()
+})
+.on('zoomend', function(){
+    zoom.innerHTML='&lt;b&gt;ZOOM: &lt;/b&gt;'+map.getZoom()
+});
+</code></pre>
+
+<p>In this case, we're updating the HTML content of <code>coords</code> and <code>zoom</code> DOM elements after the map position or zoom level changes. </p>
+<p>We could also listen to layer events: </p>
+<pre><code class="javascript">.on('click', function(e){
+    map.panTo(e.latlng)
+    coords.innerHTML=e.latlng
+});
+</code></pre>
+
+<p>In this case, we make use of the event object (referenced with <code>e</code>), in order to use one of its properties (<code>e.latlng</code>)</p>
+<h2 id="play-with-a-live-example"><a href="http://plnkr.co/edit/N453u2wW6jSNCHks37OY?p=preview">Play with a live example</a></h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ernesmb/4cities-GIS/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

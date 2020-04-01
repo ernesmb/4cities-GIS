@@ -82,9 +82,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#openlayers">OpenLayers</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mapboxgl">Mapbox.gl</a>
+    <li class="toctree-l2"><a class="reference internal" href="#openstreetmap">OpenStreetMap</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cartojs">CARTO.js</a>
+    <li class="toctree-l2"><a class="reference internal" href="#mapboxgljs-and-mapboxjs">MapboxGL.js and Mapbox.js</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cartojs-and-carto-vl">CARTO.js and CARTO VL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a>
     </li>
     </ul>
                     </li>
@@ -125,10 +129,25 @@
             <div class="section">
               
                 <h1 id="webmapping">Webmapping</h1>
+<p>There are plenty of options when it comes to development libraries for creating webmaps. We'll only focus on a handful of them, which are Open Source and relatively easy to use. </p>
 <h2 id="leafletjs">Leaflet.js</h2>
+<p><a href="https://leafletjs.com/index.html">LeafletJS</a> is a very powerful, yet easy library that allows creating webmaps with just a few lines of code. It plays very well with mobile devices and different screen sizes. It has a very good <a href="https://leafletjs.com/reference-1.6.0.html">documentation</a> and some very handy <a href="https://leafletjs.com/examples.html">examples</a>.</p>
+<p>Leaflet is quite popular, and it works as the base for other libraries that add functionality on top of it. It also has a growing ecosystem of <a href="https://leafletjs.com/plugins.html">plugins</a>, developed by the community that add or improves the core functionality.</p>
 <h2 id="openlayers">OpenLayers</h2>
-<h2 id="mapboxgl">Mapbox.gl</h2>
-<h2 id="cartojs">CARTO.js</h2>
+<p><a href="https://openlayers.org/">OpenLayers</a> was one of the first options out there, already a few years ago. It's part of the OSGeo foundation and it offers a lot of functionality, and integration with other geospatial products. </p>
+<p>As complexity and functionality grows, things become a bit more difficult to do with this library.</p>
+<h2 id="openstreetmap">OpenStreetMap</h2>
+<p><a href="https://www.openstreetmap.org/">OpenStreetMap</a> is a collaborative map of the world. We could understand it as "the Wikipedia of maps". </p>
+<p>It's not exactly a development library, but it is really useful a as global geospatial database containing information about streets, buildings, roads, national parks, points of interests and much more. </p>
+<p>Checkout the <a href="https://www.hotosm.org/"><strong>Humanitarian OpenStreetMap Team</strong></a> which is a 100% volunteer international team dedicated to humanitarian action and community development. They organize "mapathons" all around the world when there is a humanitarian crisis, to map the land and help the NGOs deployed in the field.</p>
+<h2 id="mapboxgljs-and-mapboxjs">MapboxGL.js and Mapbox.js</h2>
+<p>Mapbox has <a href="https://docs.mapbox.com/help/how-mapbox-works/web-apps/">its own alternatives for webmapping</a>. They're designed to work with the rest of the Mapbox ecosystem.</p>
+<h2 id="cartojs-and-carto-vl">CARTO.js and CARTO VL</h2>
+<p>CARTO also has its own libraries for loading data layers and create interactive webmaps and visualizations, working along with the rest of the CARTO stack. </p>
+<p><a href="https://carto.com/developers/carto-js/">CARTO.js</a> for raster tiles and <a href="https://carto.com/developers/carto-vl/">CARTO VL</a> for vector tiles.</p>
+<h2 id="exercise">Exercise</h2>
+<p>We're going to create a <a href="../leaflet/">basic webmap using LeafletJS</a>. In the exercise, there are links to <strong>live examples</strong>, where you can edit the code and see how the map changes, without fear of breaking anything ;) </p>
+<p>Feel free to explore, change parameters and try and customize the example on your own. </p>
               
             </div>
           </div>

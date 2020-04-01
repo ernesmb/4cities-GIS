@@ -76,6 +76,10 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#postgis">PostGIS</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -119,7 +123,47 @@
             <div class="section">
               
                 <h1 id="geospatial-databases-postgis">Geospatial Databases: PostGIS</h1>
+<p>A geospatial database is basically a very handy tool for storing data that has a spatial component. As other (<a href="https://en.wikipedia.org/wiki/Relational_database">relational</a>) databases, it stores data in tabular format, where each <strong>table</strong> is structured in: </p>
+<ul>
+<li><strong>Rows</strong> represent each occurence of the data we're storing.</li>
+<li><strong>Columns</strong> represent the attributes associated to each row. </li>
+</ul>
+<p>What makes a geospatial database <em>geospatial</em> is that in addition to numbers, text, arrays and booleans, it can store and operate with a special data type, that represent the shape and location of objects in the surface of Earth. </p>
+<p>As you may know already, one can <em>ask questions</em>  to a database, using a language called <code>SQL</code> (Structured Query Language). Using <code>SQL</code>, we could filter, aggregate and order our data, but also transform it or obtain calculated columns. 
+The kind of <em>questions</em> we can <em>ask</em> a geospatial database are something like: </p>
+<ul>
+<li><em>Which houses are closer than 100m from a Metro station?</em></li>
+<li><em>How many accidents happened in this segment of the street in the last year?</em> </li>
+<li><em>Where are the 10 closest grocery stores from this location?</em></li>
+<li><em>What's the tree species distribution like in this park?</em></li>
+</ul>
+<p>Using a database (instead of files) to store data has many advantages, as it allows storing and querying bigger volumes of data in a more organized, structured and performant way.</p>
 <h2 id="postgis">PostGIS</h2>
+<p><a href="http://postgis.net/">PostGIS</a> is an Open Source extension that adds geospatial capabilities (data types, functions and operators) to a <a href="https://www.postgresql.org/">PostgreSQL</a> database. </p>
+<p>PostGIS is the foundation for many other projects, such as CARTO.</p>
+<p>Take a look at <a href="https://www.youtube.com/watch?v=g4DgAVCmiDE">this amazing talk</a> from <a href="http://blog.cleverelephant.ca/about">Paul Ramsey</a>, one of the main contributors to the PostGIS project. It can get a bit too technical, but it's a really great introduction to PostGIS and geospatial databases in general. </p>
+<h2 id="resources">Resources</h2>
+<p>Other useful links:</p>
+<ul>
+<li><a href="http://postgis.net/">PostGIS Project</a> and <a href="http://postgis.net/docs/manual-2.5/">official docs</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Well-known_text">WKT encoding</a> </li>
+<li><a href="http://modern-sql.com/slides">Modern SQL</a> </li>
+<li><a href="http://use-the-index-luke.com">Use the Index, Luke</a></li>
+<li><a href="https://www.postgresql.org/docs/9.5/static/functions-matching.html">Pattern matching expressions</a></li>
+<li><a href="http://bl.ocks.org/jsanz/60050dbfe104da69f15e">Fill the gaps between two geometries</a></li>
+<li><a href="https://carto.com/blog/jets-and-datelines">Jump across the Date Line</a></li>
+<li>EPSG codes databases:<ul>
+<li><a href="http://epsg.io/">http://epsg.io/</a></li>
+<li><a href="http://spatialreference.org/">http://spatialreference.org/</a></li>
+</ul>
+</li>
+<li><a href="https://carto.com/blog/free-your-maps-web-mercator/">Free your maps from Web Mercator</a></li>
+<li><a href="https://github.com/geoinquietosvlc/antipodes-map/blob/master/pgsql/funciones.sql">Stored procedures that return the Antipode's point for an input geometry</a></li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<ul>
+<li><a href="../spatial_sql/">Introduction to Spatial SQL</a></li>
+</ul>
               
             </div>
           </div>
