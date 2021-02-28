@@ -4,7 +4,7 @@
 ---
 Erasmus Mundus Master Course in Urban Studies - “4 Cities” 
 
-11th Cohort/2020 - Madrid Autonoma’s Period
+12th Cohort/2021 - Madrid Autonoma’s Period
 
 ---
 [ernesmb.github.io/4cities-GIS](https://ernesmb.github.io/4cities-GIS)
@@ -14,7 +14,7 @@ Erasmus Mundus Master Course in Urban Studies - “4 Cities”
 ### Ernesto Martínez Becerra
 Geographer, Geospatial technology specialist.
 
-Product Solutions Manager at [CARTO](https://carto.com).
+Product Manager at [CARTO](https://carto.com).
 
 [ernesmb@gmail.com](mailto:ernesmb@gmail.com) | [@ernesmb](https://github.com/ernesmb)
 
