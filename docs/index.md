@@ -2,9 +2,10 @@
 **Methods and techniques for urban sustainability**
 
 ---
-Erasmus Mundus Master Course in Urban Studies - “4 Cities” 
+**Erasmus Mundus Master Course in Urban Studies - “4 Cities”**
 
 12th Cohort/2021 - Universidad Autónoma de Madrid
+
 ---
 [ernesmb.github.io/4cities-GIS](https://ernesmb.github.io/4cities-GIS)
 
