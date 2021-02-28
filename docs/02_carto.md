@@ -1,15 +1,10 @@
-# CARTO office
+# CARTO (webinar)
 
 Welcome!
 
-I hope you like our office :) Take a seat and let's talk a bit about what we do here. 
+Here are the [slides](https://docs.google.com/presentation/d/10kl1oUUBf6-crXnVz8XMIzQG5ejda8Qea_slWdWp5A0/edit?usp=sharing) from our online session about CARTO.
 
-[Slides.](https://docs.google.com/presentation/d/12DZJUFARs8phKZI6wdw4ua4uCXvPJl5NNyvSmFopXQs/edit?usp=sharing)
-
-[Here is map](https://team.carto.com/u/abel/builder/570d1084-e174-11e6-a8b5-0e3ff518bd15/embed?state=%7B%22map%22%3A%7B%22ne%22%3A%5B40.391600154151%2C-3.7477970123291016%5D%2C%22sw%22%3A%5B40.444530259240274%2C-3.661279678344727%5D%2C%22center%22%3A%5B40.41807041185426%2C-3.7045383453369145%5D%2C%22zoom%22%3A14%7D%7D) with things to go see in Madrid, by walking time from here!
-![](img/tourist_attr_map.png)
-
-and few more examples of how CARTO is being used to learn about our cities:
+Here are a few more examples of how CARTO is being used to learn about our cities:
 
 - [Informo Madrid](http://informo.munimadrid.es/#/realtime?panel=live)
 - [Traffic fines in Madrid](https://demos.carto.io/view_demo?demo_id=5Q9K7MPSJaAesWyUMgEKGm)
