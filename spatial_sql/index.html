@@ -202,11 +202,10 @@
 <li><code>listings_madrid</code>: Madrid Airbnb listings</li>
 </ul>
 <p>Try entering a simple query like the one below. To run the query, type <code>Control+Enter</code> on PCs, <code>Command+Enter</code>/<code>Cmd+Return</code> on macs, or press the green <code>play</code> button in the bottom right corner of the SQL panel. </p>
-<pre><code class="sql">select *
+<pre><code class="language-sql">select *
   from listings_madrid
 where bathrooms &gt;= 3
 </code></pre>
-
 <p>After applying a query, you should see the results in the map. If it becomes unresponsive, normally just refreshing the page will make it work again.</p>
 <hr />
 <h2 id="postgis-concepts-geometry-vs-geography">PostGIS concepts: <code>geometry</code> vs. <code>geography</code></h2>
@@ -244,19 +243,18 @@ where bathrooms &gt;= 3
 <p>The following queries will work on all geometries: point, line, and polygon.</p>
 <h3 id="transforming-geometries-into-a-different-projection">Transforming geometries into a different projection</h3>
 <h4 id="world-robinson">World Robinson</h4>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   cartodb_id,
   ST_Transform(the_geom, 54030) AS the_geom_webmercator
 FROM
   ne_50m_land
 </code></pre>
-
 <p><img alt="transform projections" src="../img/db/spatial-sql-01.png" /></p>
 <p><em>About <a href="http://cartodb.github.io/training/intermediate/cartocss.html#projections">working with different projections in CARTO</a> and <a href="http://postgis.net/docs/ST_Transform.html"><code>ST_Transform</code></a>.</em></p>
 <p><em>This <a href="https://ramiroaznar.github.io/labs-carto-proj/">application</a> displays several popular map projections and gives some information on each.</em></p>
 <hr />
 <h3 id="translating-geometries">Translating Geometries</h3>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   cartodb_id,
   ST_Transform(ST_Translate(the_geom,5.0,7.4), 3857) as the_geom_webmercator
 FROM
@@ -267,14 +265,13 @@ WHERE
    ST_MakeEnvelope(-18.748169,27.571591,-13.342896,29.463514,4326)
  )
 </code></pre>
-
 <p><img alt="translate geoms" src="../img/db/spatial-sql-02.png" /></p>
 <hr />
 <h3 id="buffer-st_buffer">Buffer (ST_Buffer)</h3>
 <h4 id="simple-buffer">Simple Buffer</h4>
 <p>ST_Buffer uses the input geometry's unit of measure, which in the case of our <code>the_geom</code> is decimal degrees. In order to use meters as our buffer unit, we must cast our geometry to a geography, then back to a geometry once we have our buffer. Alternatively, if you just want to visualize you can simply use <code>the_geom_webmercator</code>, as it's unit of measure is already meters.</p>
 <p><em>About <a href="http://postgis.net/docs/ST_Buffer.html"><code>ST_Buffer</code></a>.</em></p>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   ST_Transform(
     ST_Buffer(
       the_geom::geography,
@@ -287,11 +284,10 @@ FROM
 WHERE
   adm0name ILIKE 'spain'
 </code></pre>
-
 <p><img alt="buffer" src="../img/db/spatial-sql-03.png" /></p>
 <hr />
 <h4 id="dissolve-buffers">Dissolve Buffers</h4>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   row_number() over() as cartodb_id,
   ST_UnaryUnion(grp) as the_geom,
   st_transform(
@@ -314,12 +310,11 @@ FROM
   FROM ne_10m_populated_places_simple
   WHERE adm0name ILIKE 'spain') sq
 </code></pre>
-
 <p><img alt="dissolve buffer" src="../img/db/spatial-sql-04.png" /></p>
 <hr />
 <h2 id="sql-for-points">SQL for Points</h2>
 <h3 id="know-wether-a-geometry-is-within-the-given-range-from-another-geometry">Know wether a geometry is <strong>within</strong> the given range from another geometry:</h3>
-<pre><code class="sql">SELECT a.*
+<pre><code class="language-sql">SELECT a.*
   FROM ne_10m_populated_places_simple a,
        ne_10m_populated_places_simple b
  WHERE a.cartodb_id != b.cartodb_id
@@ -330,7 +325,6 @@ FROM
    AND a.adm0name = 'Spain'
    AND b.adm0name = 'Spain'
 </code></pre>
-
 <p><img alt="dwithin" src="../img/db/spatial-sql-10.png" /></p>
 <p>In this case, we are using <code>the_geom_webmercator</code> to avoid casting to <code>geography</code> type. Calculations made with <code>geometry</code> type takes the CRS units.</p>
 <p>Keep in mind that CRS <strong>units in webmercator are not meters</strong>, and they depend directly on the latitude.</p>
@@ -338,7 +332,7 @@ FROM
 <hr />
 <h3 id="making-lines">Making lines<a name="lines"></a></h3>
 <h4 id="simple-lines">Simple lines</h4>
-<pre><code class="sql">WITH
+<pre><code class="language-sql">WITH
   b as (SELECT * FROM ne_10m_populated_places_simple WHERE name ilike 'barcelona' and adm0name ilike 'spain'),
   m as (SELECT * FROM ne_10m_populated_places_simple WHERE name ilike 'madrid')
 
@@ -348,11 +342,10 @@ SELECT
 FROM
   b, m
 </code></pre>
-
 <p><img alt="simple-line" src="../img/db/spatial-sql-12.png" /></p>
 <hr />
 <h4 id="multiple-lines">Multiple lines</h4>
-<pre><code class="sql">WITH
+<pre><code class="language-sql">WITH
   spain as (SELECT * FROM ne_10m_populated_places_simple WHERE adm0name ILIKE 'spain'),
   madrid as (SELECT * FROM spain WHERE name ILIKE 'Madrid')
 
@@ -364,11 +357,10 @@ FROM
 WHERE
   s.cartodb_id &lt;&gt; m.cartodb_id
 </code></pre>
-
 <p><img alt="multi-lines" src="../img/db/spatial-sql-13.png" /></p>
 <hr />
 <h4 id="sequential-lines">Sequential lines</h4>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   ST_MakeLine(the_geom_webmercator ORDER BY ST_X(the_geom), ST_Y(the_geom) ASC) as the_geom_webmercator,
   min(cartodb_id) as cartodb_id
 FROM
@@ -376,10 +368,9 @@ FROM
 WHERE
   adm0name ILIKE 'spain'
 </code></pre>
-
 <h2 id="_1"><img alt="seq-lines" src="../img/db/spatial-sql-14.png" /></h2>
 <h4 id="great-circles-curved-lines">Great Circles (curved lines)</h4>
-<pre><code class="sql"> SELECT ST_Transform(
+<pre><code class="language-sql"> SELECT ST_Transform(
           ST_Segmentize(
             ST_Makeline(
               a.the_geom,
@@ -400,14 +391,13 @@ WHERE
            WHERE name ILIKE 'new york'
         ) as b
 </code></pre>
-
 <p><img alt="seq-lines" src="../img/db/spatial-sql-15.png" /></p>
 <p><em>About <a href="http://blog.cartodb.com/jets-and-datelines/">Great Circles</a>.</em></p>
 <hr />
 <h2 id="sql-for-polygons">SQL for Polygons</h2>
 <h3 id="get-the-number-of-points-inside-a-polygon">Get the number of points inside a polygon</h3>
 <p>Using <code>GROUP BY</code>:</p>
-<pre><code class="sql">  SELECT e.cartodb_id,
+<pre><code class="language-sql">  SELECT e.cartodb_id,
          e.admin,
          e.the_geom_webmercator,
          count(*) AS pp_count,
@@ -417,10 +407,9 @@ WHERE
       ON ST_Intersects(p.the_geom, e.the_geom)
 GROUP BY e.cartodb_id
 </code></pre>
-
 <p><img alt="points in poly group" src="../img/db/spatial-sql-08.png" />
 Using <code>LATERAL</code>:</p>
-<pre><code class="sql">SELECT a.cartodb_id,
+<pre><code class="language-sql">SELECT a.cartodb_id,
        a.admin AS name,
        a.the_geom_webmercator,
        counts.number_cities AS pp_count,
@@ -433,13 +422,12 @@ Using <code>LATERAL</code>:</p>
      WHERE ST_Intersects(a.the_geom, b.the_geom)
   ) AS counts
 </code></pre>
-
 <p><img alt="points in poly lats" src="../img/db/spatial-sql-09.png" /></p>
 <p><em>About <a href="http://postgis.net/docs/ST_Intersects.html"><code>ST_Intersects</code></a> and <a href="http://blog.heapanalytics.com/postgresqls-powerful-new-join-type-lateral">Lateral JOIN</a></em></p>
 <p><strong>Note:</strong> You know about the <code>EXPLAIN ANALYZE</code> function? use it to take a look on how both queries are pretty similar in terms of performance.</p>
 <hr />
 <h3 id="get-the-difference-between-two-geometries">Get the <strong>difference</strong> between two geometries:</h3>
-<pre><code class="sql">SELECT a.cartodb_id,
+<pre><code class="language-sql">SELECT a.cartodb_id,
        ST_Difference(
          a.the_geom_webmercator,
          b.the_geom_webmercator
@@ -448,12 +436,11 @@ Using <code>LATERAL</code>:</p>
        ne_adm0_europe b
  WHERE b.adm0_a3 like 'ESP'
 </code></pre>
-
 <p><img alt="difference" src="../img/db/spatial-sql-11.png" /></p>
 <p><em>About <a href="http://postgis.net/docs/ST_Difference.html"><code>ST_Difference</code></a>.</em></p>
 <hr />
 <h3 id="negative-buffer">Negative buffer</h3>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   cartodb_id,
   ST_Transform(
     ST_Buffer(
@@ -466,11 +453,10 @@ FROM
 WHERE
   name ilike 'spain'
 </code></pre>
-
 <p><img alt="negative-buffers" src="../img/db/spatial-sql-16.png" /></p>
 <hr />
 <h3 id="spatial-joins">Spatial Joins</h3>
-<pre><code class="sql">with metro_lines as (
+<pre><code class="language-sql">with metro_lines as (
   SELECT
     row_number() over() as cartodb_id,
     ST_Buffer(
@@ -492,25 +478,23 @@ from listings_madrid x
 left join metro_lines y
 on st_intersects(x.the_geom, y.the_geom)
 </code></pre>
-
 <p><img alt="spatial join" src="../img/db/spatial-sql-17.png" /></p>
 <p>In the above example, you can see where the points joined on the buffer of the metro lines, and where they didn't based on if the cartodb_id for the lines existed in the points dataset.</p>
 <hr />
 <h2 id="sql-for-carto">SQL for CARTO</h2>
 <h3 id="cdb_latlng">CDB_LatLng()</h3>
 <p><code>cdb_latlng()</code> is a shortcut to the function <code>ST_SetSRID(ST_Point(),srid)</code>, with the default srid set as <code>4326</code>, the srid of <code>the_geom</code>. One notable difference is that <code>ST_Point()</code> takes coordinate pairs in the order of <code>(longitude, latitude)</code>, whereas <code>cdb_latlng()</code> takes coordinate pairs in the order of <code>(latitude, longitude)</code>.</p>
-<pre><code class="sql">SELECT
+<pre><code class="language-sql">SELECT
   1 as cartodb_id,
   CDB_LatLng(0,0) as the_geom,
   ST_Transform(CDB_LatLng(0, 0), 3857) as the_geom_webmercator  
   /* ST_SetSRID(ST_MakePoint(0, 0), 4326) */
 </code></pre>
-
 <p><img alt="cdb_latlng" src="../img/db/spatial-sql-05.png" /></p>
 <hr />
 <h3 id="grids">Grids</h3>
 <h4 id="hexagon-grids">Hexagon Grids</h4>
-<pre><code class="sql">WITH grid as (
+<pre><code class="language-sql">WITH grid as (
   SELECT
     row_number() over () as cartodb_id,
     CDB_HexagonGrid(
@@ -532,12 +516,11 @@ WHERE
 AND
   name ILIKE 'spain'
 </code></pre>
-
 <p><img alt="hex grids" src="../img/db/spatial-sql-06.png" /></p>
 <p><em>About <a href="http://docs.cartodb.com/tips-and-tricks/cartodb-functions/#a-hexagon-grid">CDB_HexagonGrid</a></em></p>
 <hr />
 <h4 id="rectangular-grids">Rectangular Grids</h4>
-<pre><code class="sql">WITH grid as (
+<pre><code class="language-sql">WITH grid as (
   SELECT
     row_number() over () as cartodb_id,
     CDB_RectangleGrid(
@@ -560,7 +543,6 @@ WHERE
 AND
   name ILIKE 'spain'
 </code></pre>
-
 <p><img alt="rect grids" src="../img/db/spatial-sql-07.png" />
 <em>About <a href="http://docs.cartodb.com/tips-and-tricks/cartodb-functions/#a-rectangle-grid">CDB_RectangleGrid</a></em></p>
 <p>You can read more about CARTO custom spatial queries <a href="https://carto.com/docs/tips-and-tricks/carto-functions/">here</a>.</p>

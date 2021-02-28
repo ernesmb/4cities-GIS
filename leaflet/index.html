@@ -130,7 +130,7 @@
 
 <h2 id="getting-started">Getting started</h2>
 <p>Creating a basic map with Leaflet is actually pretty easy, this Javascript snippet will create a map with a single marker and a popup:</p>
-<pre><code class="javascript">var map = L.map('map').setView([51.505, -0.09], 13);
+<pre><code class="language-javascript">var map = L.map('map').setView([51.505, -0.09], 13);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
@@ -140,12 +140,10 @@ L.marker([51.5, -0.09]).addTo(map)
     .bindPopup('A pretty CSS3 popup.&lt;br&gt; Easily customizable.')
     .openPopup();
 </code></pre>
-
 <p>Let's see what each part does:</p>
 <h3 id="map-object"><a href="http://leafletjs.com/reference-1.0.3.html#map">Map object</a></h3>
-<pre><code class="javascript">var map = L.map('map').setView([51.505, -0.09], 13);
+<pre><code class="language-javascript">var map = L.map('map').setView([51.505, -0.09], 13);
 </code></pre>
-
 <p>There are three different <code>map</code> on that single line! let's elaborate a bit: </p>
 <ul>
 <li><code>var map</code>: This is the variable that will hold the map object</li>
@@ -171,11 +169,10 @@ L.marker([51.5, -0.09]).addTo(map)
 <p>Check <a href="https://www.mapbox.com/help/how-web-maps-work/">this link</a> to know more about tiles and how they work</p>
 </blockquote>
 <p>This is the code that let us add a tiled layer to a leaflet map: </p>
-<pre><code class="javascript">L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+<pre><code class="language-javascript">L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
 }).addTo(map);
 </code></pre>
-
 <ul>
 <li>Remember to always add the attribution</li>
 <li><code>.addTo()</code> is a method of the <code>tileLayer</code> class (and many others) that adds the declared layer to the map object. It expects the variable with the map object as a parameter. </li>
@@ -185,11 +182,10 @@ L.marker([51.5, -0.09]).addTo(map)
 </blockquote>
 <h3 id="marker"><a href="http://leafletjs.com/reference-1.0.3.html#marker">Marker</a></h3>
 <p>Adding a single marker to a Leaflet map is as easy as: </p>
-<pre><code class="javascript">L.marker([51.5, -0.09]).addTo(map)
+<pre><code class="language-javascript">L.marker([51.5, -0.09]).addTo(map)
     .bindPopup('A pretty CSS3 popup.&lt;br&gt; Easily customizable.')
     .openPopup();
 </code></pre>
-
 <p>This adds a marker as a new layer to the map. It expects at least an array with pair of <strong>LatLon</strong> coordinates. </p>
 <p><code>.bindPopup()</code> adds a popup with custom HTML content inside. <code>.openPopup()</code> opens the popup programmatically. </p>
 <h5 id="check-a-live-version-of-this-basic-example-here-feel-free-to-play-with-it">Check a live version of this basic example <a href="http://plnkr.co/edit/cDszbYcgUZexjCPzoSmT?p=preview">here</a>. Feel free to play with it!</h5>
@@ -197,13 +193,11 @@ L.marker([51.5, -0.09]).addTo(map)
 <p>Another possibility for adding data to a Leaflet map would be loading a set of geometries (and their properties) using a geoJSON file. 
 We're going to use this <a href="../src/populated_places.js">Spanish cities dataset</a>. </p>
 <p>First thing we need to do is storing the geoJSON features in a variable (on <code>populated_places.js</code> file) and load the file on the HTML's <code>&lt;head&gt;</code> section:</p>
-<pre><code class="html">&lt;script src=&quot;populated_places.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;populated_places.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-
 <p>After that, adding the features as a vector layer in Leaflet is quite easy: </p>
-<pre><code class="javascript">L.geoJSON(populatedPlaces, {}).addTo(map);  
+<pre><code class="language-javascript">L.geoJSON(populatedPlaces, {}).addTo(map);  
 </code></pre>
-
 <p>Note that we're just referencing the variable name, and not passing any other option to <code>geoJSON()</code> method. We'll come back to that later. </p>
 <p>This approach has a very important drawback. Vector layers in Leaflet use a lot of memory on the browser, which leads to slow map performance depending on the computer and the amount of features to be loaded. </p>
 <p>This really wouldn't work for a map with thousands of features, but is a nice and easy approach for a map in the range of a few hundreds features. </p>
@@ -246,18 +240,17 @@ style: function(feature){
 <p>We could add a simple, static Popup that shows the same content for every feature in the map, using the <code>bindPopup()</code> method we saw before. </p>
 <p>However, in order to create dynamic Popups that show information stored as feature properties, we need a different approach. </p>
 <p>We'll do so by passing another option to <code>L.geoJSON</code> layer declaration: </p>
-<pre><code class="javascript">onEachFeature: function(feature,layer){
+<pre><code class="language-javascript">onEachFeature: function(feature,layer){
     layer.bindPopup(
         '&lt;h2&gt;'+feature.properties.name+'&lt;/h2&gt;'+
         '&lt;b&gt;Population:&lt;/b&gt; '+feature.properties.pop_max
         )
 }
 </code></pre>
-
 <p>This will render the HTML code passed as argument to the function, but is also able to get values from the feature properties. </p>
 <h2 id="filtering-the-layer">Filtering the layer</h2>
 <p>We could also apply a filter based on each feature properties, the <code>filter</code> options iterate over the geojson layer and applies the function we have defined to return <code>true</code> or <code>false</code> depending on whether a feature should be rendered or not. </p>
-<pre><code class="javascript">filter: function(feature){
+<pre><code class="language-javascript">filter: function(feature){
     if (feature.properties.pop_max &lt; 100000){
         return false
     }
@@ -266,27 +259,24 @@ style: function(feature){
     }
 }
 </code></pre>
-
 <p>The filter above will only show cities with more than 100K inhabitants. </p>
 <h2 id="events"><a href="http://leafletjs.com/reference-1.0.3.html#map-event">Events</a></h2>
 <p>Registering an event allows to perform certain actions based on changes on the map state, user interaction, etc</p>
 <p>We can easily register an event and set the subsequent actions like this: </p>
-<pre><code class="javascript">map.on('moveend', function(){
+<pre><code class="language-javascript">map.on('moveend', function(){
     coords.innerHTML='&lt;b&gt; CENTER: &lt;/b&gt;'+map.getCenter()
 })
 .on('zoomend', function(){
     zoom.innerHTML='&lt;b&gt;ZOOM: &lt;/b&gt;'+map.getZoom()
 });
 </code></pre>
-
 <p>In this case, we're updating the HTML content of <code>coords</code> and <code>zoom</code> DOM elements after the map position or zoom level changes. </p>
 <p>We could also listen to layer events: </p>
-<pre><code class="javascript">.on('click', function(e){
+<pre><code class="language-javascript">.on('click', function(e){
     map.panTo(e.latlng)
     coords.innerHTML=e.latlng
 });
 </code></pre>
-
 <p>In this case, we make use of the event object (referenced with <code>e</code>), in order to use one of its properties (<code>e.latlng</code>)</p>
 <h2 id="play-with-a-live-example"><a href="http://plnkr.co/edit/N453u2wW6jSNCHks37OY?p=preview">Play with a live example</a></h2>
               
