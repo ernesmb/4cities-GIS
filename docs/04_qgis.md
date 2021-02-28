@@ -25,8 +25,8 @@ New data streams, as such provided by telco companies, mobile GPS data or real-t
 
 ## Exercises
 
-* [Add some **text labels** to your map](https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/label_tool.html). 
+* [Add some **text labels** to your map](https://docs.qgis.org/3.16/en/docs/training_manual/vector_classification/label_tool.html). 
 * [Learn the basics about **data classification and color ramps**](https://docs.qgis.org/3.10/en/docs/training_manual/vector_classification/classification.html). You can also take a look at **[ColorBrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)**, a very well known tool that helps choosing color palettes for maps; and to [CARTOcolors](https://carto.com/carto-colors/), more modern color palettes by **[Mamata Akella](https://www.linkedin.com/in/mamataakella)**.
 * [Learn more](https://carto.com/blog/proportional-symbol-maps/) about **Proportional Symbols**, best practices and Cartography principles.
-* **[Create a printable map layout](https://docs.qgis.org/3.10/en/docs/training_manual/map_composer/map_composer.html)**.
+* **[Create a printable map layout](https://docs.qgis.org/3.16/en/docs/training_manual/map_composer/map_composer.html)**.
 * Analyze data and **solve a spatial problem** with GIS techniques following [this section](https://docs.qgis.org/3.10/en/docs/training_manual/vector_analysis/index.html)
