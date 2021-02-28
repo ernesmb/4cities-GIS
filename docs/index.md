@@ -4,7 +4,7 @@
 ---
 Erasmus Mundus Master Course in Urban Studies - “4 Cities” 
 
-11th Cohort/2020 - Madrid Autonoma’s Period
+12th Cohort/2021 - Universidad Autónoma de Madrid
 
 ---
 [ernesmb.github.io/4cities-GIS](https://ernesmb.github.io/4cities-GIS)
@@ -14,7 +14,7 @@ Erasmus Mundus Master Course in Urban Studies - “4 Cities”
 ### Ernesto Martínez Becerra
 Geographer, Geospatial technology specialist.
 
-Product Solutions Manager at [CARTO](https://carto.com).
+Product Manager at [CARTO](https://carto.com).
 
 [ernesmb@gmail.com](mailto:ernesmb@gmail.com) | [@ernesmb](https://github.com/ernesmb)
 
@@ -22,13 +22,9 @@ Product Solutions Manager at [CARTO](https://carto.com).
 
 ### Course methodology
 
-In these special, different times we'll have to carry on with the course in a remote and asynchronous way. 
+During the next week, we'll learn about Geographic Information Systems methods and techniques, that can be used for urban studies and planning.
 
-The learning material is organized in different sections in the left panel, following the first two activities that we already did together (the introduction section and the visit to the CARTO office in Madrid). There will be a section matching each of the days when the course would have taken place.
-
-Each section contains links to pieces of open source learning material about a specific aspect or technology around GIS and geospatial technology. Also for each section I will propose optional exercises to help you navigate through the documentation. 
-
-Any question about the material, exercises, or anything else that you would normally ask in class, I will be happy to try and help [via email](mailto:ernesmb@gmail.com).
+The learning material is organized in different sections in the left panel. Each section contains links to pieces of open source learning material about a specific aspect or technology around GIS and geospatial technology. Also for each section I will propose optional exercises to help you navigate through the documentation. 
 
 
 ### Resources
