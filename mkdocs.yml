@@ -5,7 +5,7 @@ site_author: Ernesto Martínez Becerra
 nav:
     - Hello: index.md
     - Intro to GIS: 01_intro.md
-    - CARTO office: 02_carto.md
+    - CARTO webinar: 02_carto.md
     - QGIS I: 03_qgis.md
     - QGIS II: 04_qgis.md
     - Cloud GIS: 05_cloud.md

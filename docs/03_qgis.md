@@ -22,7 +22,6 @@ Once installed, these are the recommended exercises:
 * Dig a bit deeper into different geospatial data types: **[Vector](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/vector_data.html)** and **[Raster](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/raster_data.html)**
 * Learn about different **[Coordinate Reference Systems](https://docs.qgis.org/3.16/en/docs/gentle_gis_introduction/coordinate_reference_systems.html)**, and try to make a rectangle with an orange's peels ;)
 * Create your first map, following **[this exercise](https://docs.qgis.org/3.16/en/docs/training_manual/introduction/preparation.html)**. You can also try and load a different dataset from [Natural Earth Data](https://www.naturalearthdata.com/downloads/).
-* Start working with vector data on **[this exercise](https://docs.qgis.org/3.16/en/docs/training_manual/basic_map/vector_data.html)**.
 * Learn the basics about **[symbology](https://docs.qgis.org/3.16/en/docs/training_manual/basic_map/symbology.html)**.
 * Start working with raster data **[here](https://docs.qgis.org/3.16/en/docs/training_manual/rasters/data_manipulation.html)**.
 
