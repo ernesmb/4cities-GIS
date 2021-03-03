@@ -12,7 +12,7 @@ Among all the options out there, let's focus on just three of them.
 
 [CARTO](https://carto.com) offers a wide range of products that put together a platform for the analysis and visualization of geospatial data. One of these products is CARTO Builder, which offers the most common functionality in a GIS tool for visualization and analysis, plus sharing options to publish maps online, access to both Open Data and premium, paid datasets from different data providers. 
 
-Connectivity with different data sources and integratios with other popular tools are also a strength of the CARTO platform, which is built on top of other well known products like [PostGIS](https://postgis.net) or [Mapnik](https://mapnik.org/).
+Connectivity with different data sources and integrations with other popular tools are also a strength of the CARTO platform, which is built on top of other well known products like [PostGIS](https://postgis.net) or [Mapnik](https://mapnik.org/).
 
 There is plenty of learning material available about Builder in CARTO's [Help Center](https://carto.com/help).
 
