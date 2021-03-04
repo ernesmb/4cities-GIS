@@ -34,5 +34,5 @@ You can use it withouth registering, and it has some sample data to start workin
 * Visualization with CARTO Builder: [Trees of San Francisco](sf_trees.md)
 * Analysis with CARTO Builder: [The closing of the L line in NYC](l_line.md)
 * Analysis with CARTO Builder: [Sales Territories](https://github.com/CartoDB/carto-workshop/blob/master/02-builder-analysis/exercises/portland.md)
-* Analysis with CARTO Builder: [Risk Analysis](https://github.com/CartoDB/carto-workshop/blob/master/02-builder-analysis/exercises/portland.md)
+* Analysis with CARTO Builder: [Risk Analysis](https://github.com/CartoDB/carto-workshop/blob/master/02-builder-analysis/exercises/railways.md)
 * More at [carto-workshop](https://github.com/CartoDB/carto-workshop/tree/master/02-builder-analysis) repository
