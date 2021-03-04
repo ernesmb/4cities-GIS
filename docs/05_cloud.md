@@ -23,7 +23,7 @@ There is plenty of learning material available about Builder in CARTO's [Help Ce
 
 Kepler.gl is a great tool for visualizing your data, it has 3D capabilities and a very nice and easy interface.
 
-You can use it withouth registering, and it has some sample data to start working with it right away. There is also a very good user's guide available [here](https://github.com/keplergl/kepler.gl/blob/master/docs/user-guides/a-introduction.md)
+You can use it withouth registering, and it has some sample data to start working with it right away. There is also a very good user's guide available [here](https://github.com/keplergl/kepler.gl/blob/master/docs/user-guides/README.md)
 
 ## Mapbox
 
