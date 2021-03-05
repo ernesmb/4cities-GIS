@@ -56,15 +56,12 @@ These are the datasets that you will need to complete the exercises. You can dow
 * [lineas_madrid](http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+lineas_madrid&format=gpkg&filename=lineas_madrid): Madrid's Metro lines
 * [listings_madrid](http://carto-workshops.carto.com/api/v2/sql?q=SELECT+*+FROM+listings_madrid&format=gpkg&filename=listings_madrid): AirBnB data for Madrid
 
-As a client for this workshop, we will use a web application that can interact with CARTO: [Franchise](https://franchise.carto.io/).
+As a client for this workshop, we will use [a very simple custom web app](https://bl.ocks.org/rochoa/raw/4e67ec932e8bb6b17831e0f4a2e0e55d/) that can interact with CARTO.
 
 From the side menu, navigate to 'CARTO', then use the following parameters to connect:
 
-* Host name: `carto.com`
-* User name: `carto-workshops` (or your own username)
+* Maps API endpoint: `https://carto-workshops.carto.com` (or your own username)
 * API key: you can leave this empty
-
-![](img/db/franchise-setup.png)
 
 Once connected, you can run `SELECT` queries against any public dataset from that account.
 

@@ -42,3 +42,4 @@ The learning material is organized in different sections in the left panel. Each
 * The power of maps - Denis Wood
 * Rethinking the power of maps - Denis Wood
 * An introduction to GIS - A free book by Victor Olaya - [link](https://volaya.github.io/gis-book/en/index.html)
+* A [list](http://www.cartography-lab.com/2020/04/12/books.html) of Cartography and data visualization books by Ramiro Aznar
